@@ -25,8 +25,7 @@ const products = [
       for: "Лёгкие и средние лошади",
       discipline: "Выездка, прогулка",
     },
-    image:
-      "https://images.unsplash.com/photo-1553284965-5dd8352ff94d?w=600&q=80",
+    image: "/images/product-horseshoe-1.png",
   },
   {
     id: 2,
@@ -46,8 +45,7 @@ const products = [
       for: "Средние лошади",
       discipline: "Конкур, выездка",
     },
-    image:
-      "https://images.unsplash.com/photo-1553284965-5dd8352ff94d?w=600&q=80",
+    image: "/images/product-horseshoe-2.png",
   },
   {
     id: 3,
@@ -67,8 +65,7 @@ const products = [
       for: "Крупные лошади",
       discipline: "Спорт, конкур",
     },
-    image:
-      "https://images.unsplash.com/photo-1553284965-5dd8352ff94d?w=600&q=80",
+    image: "/images/product-horseshoe-3.png",
   },
   {
     id: 4,
@@ -88,8 +85,7 @@ const products = [
       for: "Мощные и тяжёлые лошади",
       discipline: "Рабочие, тяжёлые породы",
     },
-    image:
-      "https://images.unsplash.com/photo-1553284965-5dd8352ff94d?w=600&q=80",
+    image: "/images/product-horseshoe-4.png",
   },
   {
     id: 5,
@@ -104,8 +100,7 @@ const products = [
     description:
       "Ковочные гвозди для тонких и средних стенок копыта. Подходят для молодых лошадей и лошадей с тонкой роговицей.",
     specs: null,
-    image:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+    image: "/images/product-nails-e3.png",
   },
   {
     id: 6,
@@ -120,8 +115,7 @@ const products = [
     description:
       "Универсальный ковочный гвоздь. Самый востребованный размер среди ковалей. Подходит для большинства лошадей.",
     specs: null,
-    image:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+    image: "/images/product-nails-e4.png",
   },
   {
     id: 7,
@@ -136,8 +130,7 @@ const products = [
     description:
       "Гвозди для крупных лошадей с толстой стенкой копыта. Обеспечивают надёжную фиксацию подковы при высоких нагрузках.",
     specs: null,
-    image:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+    image: "/images/product-nails-e5.png",
   },
 ];
 
