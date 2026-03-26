@@ -1,22 +1,26 @@
 openapi: 3.1.0
 info:
-  # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: Perfect Balance API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: products
+    description: Product operations
+  - name: orders
+    description: Order operations
+  - name: contact
+    description: Contact form
 paths:
   /healthz:
     get:
       operationId: healthCheck
       tags: [health]
       summary: Health check
-      description: Returns server health status
       responses:
         "200":
           description: Healthy
@@ -24,6 +28,90 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /products:
+    get:
+      operationId: getProducts
+      tags: [products]
+      summary: Get all products
+      parameters:
+        - in: query
+          name: category
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+
+  /products/{id}:
+    get:
+      operationId: getProduct
+      tags: [products]
+      summary: Get a single product
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Product found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /order:
+    post:
+      operationId: createOrder
+      tags: [orders]
+      summary: Place an order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateOrderBody"
+      responses:
+        "201":
+          description: Order created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OrderConfirmation"
+
+  /contact:
+    post:
+      operationId: submitContact
+      tags: [contact]
+      summary: Submit contact form
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContactBody"
+      responses:
+        "200":
+          description: Message received
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +122,145 @@ components:
       required:
         - status
 
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
+
+    SuccessResponse:
+      type: object
+      properties:
+        message:
+          type: string
+      required:
+        - message
+
+    ProductSpecs:
+      type: object
+      properties:
+        material:
+          type: ["string", "null"]
+        weight:
+          type: ["string", "null"]
+        for:
+          type: ["string", "null"]
+        discipline:
+          type: ["string", "null"]
+
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        category:
+          type: string
+        sizes:
+          type: ["string", "null"]
+        size:
+          type: ["string", "null"]
+        package_qty:
+          type: integer
+        price_pair:
+          type: ["integer", "null"]
+        price_box:
+          type: integer
+        badge:
+          type: ["string", "null"]
+        description:
+          type: string
+        specs:
+          oneOf:
+            - $ref: "#/components/schemas/ProductSpecs"
+            - type: "null"
+        image:
+          type: string
+      required:
+        - id
+        - name
+        - category
+        - package_qty
+        - price_box
+        - description
+        - image
+
+    CartItem:
+      type: object
+      properties:
+        productId:
+          type: integer
+        name:
+          type: string
+        qty:
+          type: integer
+        unit:
+          type: string
+        price:
+          type: integer
+      required:
+        - productId
+        - name
+        - qty
+        - unit
+        - price
+
+    CreateOrderBody:
+      type: object
+      properties:
+        name:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        city:
+          type: string
+        address:
+          type: string
+        transportCompany:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/CartItem"
+        total:
+          type: integer
+      required:
+        - name
+        - phone
+        - email
+        - items
+        - total
+
+    OrderConfirmation:
+      type: object
+      properties:
+        orderId:
+          type: string
+        message:
+          type: string
+      required:
+        - orderId
+        - message
+
+    ContactBody:
+      type: object
+      properties:
+        name:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        clientType:
+          type: string
+        message:
+          type: string
+      required:
+        - name
+        - phone
+        - message

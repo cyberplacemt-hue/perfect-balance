@@ -1,0 +1,351 @@
+You are an expert full-stack web developer. Build a complete, 
+production-ready e-commerce website for a horseshoe supplier.
+
+=== PROJECT OVERVIEW ===
+Business: Online store selling professional horseshoes and 
+horseshoe nails (B2B + B2C)
+Brand name: "Perfect Balance"
+Target: Farriers, equestrian clubs, private horse owners
+Language: Russian
+Stack: Node.js + Express backend, HTML/CSS/JS frontend
+Single deployable project on Replit
+
+=== DESIGN SYSTEM ===
+Colors:
+  --gold: #c8a84b
+  --gold-dark: #a8882b
+  --dark: #1a1a1a
+  --dark-2: #2a2a2a
+  --light-bg: #f8f5ef
+  --white: #ffffff
+  --muted: #666666
+  --success: #2ecc71
+  --error: #e74c3c
+
+Fonts (Google Fonts):
+  Headings: "Playfair Display" (700, 800)
+  Body: "Inter" (400, 500, 600)
+
+Design style: 
+  Premium luxury equestrian brand
+  Clean, bold, cinematic
+  Micro-animations everywhere
+  Glass morphism effects on cards
+  Parallax on hero section
+  Custom cursor (horseshoe icon)
+
+=== FILE STRUCTURE ===
+/
+├── server.js          (Express server)
+├── package.json
+├── .replit
+└── public/
+    ├── index.html     (main page)
+    ├── catalog.html   (full catalog)
+    ├── product.html   (product detail)
+    ├── cart.html      (shopping cart)
+    ├── checkout.html  (checkout form)
+    ├── css/
+    │   ├── style.css  (main styles)
+    │   ├── animations.css
+    │   └── responsive.css
+    └── js/
+        ├── main.js    (navigation, animations)
+        ├── cart.js    (cart logic with localStorage)
+        └── catalog.js (filters, search)
+
+=== SERVER (server.js) ===
+- Express.js server serving static files from /public
+- REST API endpoints:
+  GET  /api/products       — return all products as JSON
+  GET  /api/products/:id   — single product
+  POST /api/order          — save order (log to console + return confirmation)
+  POST /api/contact        — handle contact form
+- Products data hardcoded in server.js as array (no database needed)
+- CORS enabled
+- Port: process.env.PORT || 3000
+
+=== PRODUCTS DATA ===
+Horseshoes (category: "horseshoes"):
+[
+  {
+    id: 1,
+    name: "Perfect Balance №1",
+    category: "horseshoes",
+    sizes: "F 140×138×8 / H 133×136×8",
+    package_qty: 20,
+    price_pair: 819,
+    price_box: 16380,
+    badge: "Хит продаж",
+    description: "Подкова для лёгких и средних лошадей. 
+    Идеальна для выездки и прогулочной езды. 
+    Качественная сталь, точная геометрия, 
+    удобная посадка на копыто.",
+    specs: {
+      material: "Сталь",
+      weight: "300г/пара",
+      for: "Лёгкие и средние лошади",
+      discipline: "Выездка, прогулка"
+    },
+    image: "https://images.unsplash.com/photo-
+    1553284965-5dd8352ff94d?w=600&q=80"
+  },
+  {
+    id: 2,
+    name: "Perfect Balance №2",
+    category: "horseshoes",
+    sizes: "F 146×142×8 / H 138×142×8",
+    package_qty: 16,
+    price_pair: 819,
+    price_box: 14040,
+    badge: null,
+    description: "Универсальная подкова для лошадей 
+    среднего размера. Подходит для конкура и выездки. 
+    Самый популярный размер среди КСК.",
+    specs: {
+      material: "Сталь",
+      weight: "320г/пара",
+      for: "Средние лошади",
+      discipline: "Конкур, выездка"
+    },
+    image: "https://images.unsplash.com/photo-
+    1553284965-5dd8352ff94d?w=600&q=80"
+  },
+  {
+    id: 3,
+    name: "Perfect Balance №3",
+    category: "horseshoes",
+    sizes: "F 153×150×8 / H 146×150×8",
+    package_qty: 16,
+    price_pair: 819,
+    price_box: 14040,
+    badge: "Популярный",
+    description: "Подкова для крупных спортивных лошадей. 
+    Рассчитана на интенсивную работу и высокие нагрузки. 
+    Широко применяется в конном спорте.",
+    specs: {
+      material: "Сталь",
+      weight: "350г/пара",
+      for: "Крупные лошади",
+      discipline: "Спорт, конкур"
+    },
+    image: "https://images.unsplash.com/photo-
+    1553284965-5dd8352ff94d?w=600&q=80"
+  },
+  {
+    id: 4,
+    name: "Perfect Balance №4",
+    category: "horseshoes",
+    sizes: "F 158×158×8 / H 153×158×8",
+    package_qty: 16,
+    price_pair: 845,
+    price_box: 13520,
+    badge: "Для крупных",
+    description: "Максимальный размер для мощных лошадей 
+    с большими копытами. Усиленная конструкция 
+    для тяжёлых пород и рабочих лошадей.",
+    specs: {
+      material: "Сталь",
+      weight: "380г/пара",
+      for: "Мощные и тяжёлые лошади",
+      discipline: "Рабочие, тяжёлые породы"
+    },
+    image: "https://images.unsplash.com/photo-
+    1553284965-5dd8352ff94d?w=600&q=80"
+  }
+]
+
+Nails (category: "nails"):
+[
+  {
+    id: 5,
+    name: "Гвоздь ковочный E3",
+    category: "nails",
+    size: "4.5 см",
+    package_qty: 250,
+    price_box: 2470,
+    badge: null,
+    description: "Ковочные гвозди для тонких и средних 
+    стенок копыта. Подходят для молодых лошадей 
+    и лошадей с тонкой роговицей.",
+    image: "https://images.unsplash.com/photo-
+    1558618666-fcd25c85cd64?w=600&q=80"
+  },
+  {
+    id: 6,
+    name: "Гвоздь ковочный E4",
+    category: "nails",
+    size: "4.75 см",
+    package_qty: 250,
+    price_box: 2600,
+    badge: "Популярный",
+    description: "Универсальный ковочный гвоздь. 
+    Самый востребованный размер среди ковалей. 
+    Подходит для большинства лошадей.",
+    image: "https://images.unsplash.com/photo-
+    1558618666-fcd25c85cd64?w=600&q=80"
+  },
+  {
+    id: 7,
+    name: "Гвоздь ковочный E5",
+    category: "nails",
+    size: "5.1 см",
+    package_qty: 250,
+    price_box: 2730,
+    badge: null,
+    description: "Гвозди для крупных лошадей 
+    с толстой стенкой копыта. Обеспечивают надёжную 
+    фиксацию подковы при высоких нагрузках.",
+    image: "https://images.unsplash.com/photo-
+    1558618666-fcd25c85cd64?w=600&q=80"
+  }
+]
+
+=== PAGE: index.html (Landing Page) ===
+
+1. PRELOADER (1.5 seconds)
+   - Full screen dark overlay
+   - Animated horseshoe SVG logo spinning
+   - Brand name appearing letter by letter
+   - Smooth fade out
+
+2. CUSTOM CURSOR
+   - Replace default cursor with small gold circle
+   - Larger ring that follows with delay (magnetic effect)
+   - Cursor changes to pointer on clickable elements
+
+3. STICKY NAVBAR
+   - Transparent at top, dark solid on scroll
+   - Logo: "Perfect Balance" (Playfair Display, gold accent)
+   - Desktop links: Главная | Каталог | О нас | Контакты
+   - Cart icon with item count badge (from localStorage)
+   - "Запросить прайс" gold CTA button
+   - Mobile: hamburger → full screen menu overlay with links
+   - Active section highlighting via IntersectionObserver
+
+4. HERO SECTION (100vh)
+   - Background image with parallax scrolling effect
+     URL: https://images.unsplash.com/photo-1508747703725-719777637510?w=1800&q=80
+   - Dark gradient overlay: linear-gradient(135deg, 
+     rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%)
+   - Content left-aligned (60% width on desktop):
+     Small label: "Профессиональное снаряжение"
+     H1 (typewriter animation): "Подковы для победителей"
+     Subtext: "Поставки Perfect Balance для ковалей, 
+     КСК и частных конюшен по всей России"
+     Two buttons: "Перейти в каталог" (gold) | "Узнать цены" (outline)
+   - Right side: floating product mockup card with 
+     glass morphism effect showing featured product
+   - Bottom: 4 animated stats (counter on scroll):
+     "500+" клиентов | "4" размера | "1-3" дня отгрузки | "100%" качество
+
+5. MARQUEE STRIP
+   - Dark background, gold text
+   - Infinite scrolling text:
+     "Perfect Balance • Спортивные подковы • Доставка по России • 
+     Работаем с ковалями и КСК • Качественная сталь •"
+
+6. FEATURED PRODUCTS (4 cards grid)
+   - Section title with decorative line
+   - Subtitle: "Ходовые позиции всегда в наличии"
+   - 4 product cards (2x2 grid on tablet, scroll on mobile):
+     Each card:
+       - Product image (full width top)
+       - Gold badge top-right (if exists)
+       - Category label
+       - Product name (Playfair Display)
+       - Size info
+       - Price per pair + box price
+       - "В корзину" button + "Подробнее" link
+       - Hover: card lifts, image zooms, button fills gold
+       - Add to cart: button shows checkmark animation
+
+7. CATEGORY SPLIT SECTION
+   - Two full-width panels side by side (stack on mobile)
+   - Left: Dark panel — "Подковы" with horse image bg + CTA
+   - Right: Light panel — "Гвозди" with close-up image bg + CTA
+   - Each with hover zoom effect
+
+8. WHY US (alternating layout)
+   - Title: "Почему выбирают Perfect Balance"
+   - 3 alternating blocks (image left/right):
+     Block 1: Image of farrier working + text about quality
+     Block 2: Image of equestrian sport + text about range
+     Block 3: Image of delivery/warehouse + text about logistics
+   - Scroll-triggered slide-in animations
+
+9. HOW TO ORDER (horizontal steps)
+   - Background: dark with subtle texture
+   - 4 steps connected by animated dashed gold line:
+     1 → Заявка → 2 → Подбор → 3 → Оплата → 4 → Доставка
+   - Each step: gold circle number, icon, title, description
+   - Progress line animates on scroll
+
+10. TESTIMONIALS (carousel/slider)
+    - 3 fake reviews from KSK/farriers
+    - Star ratings, name, role, avatar placeholder
+    - Auto-play carousel with manual dots navigation
+
+11. CONTACT SECTION
+    - Split layout: form (left) + info + map placeholder (right)
+    - Form: Имя | Телефон | Email | Тип клиента | Сообщение | Submit
+    - POST to /api/contact
+    - Success toast notification (top-right corner)
+    - Contact info: phone, email, WhatsApp link, Telegram link
+    - Working hours block
+
+12. FOOTER
+    - 4 columns: Logo+about | Каталог | Информация | Контакты
+    - Social icons (Telegram, WhatsApp, VK)
+    - Bottom bar: copyright + ИП info
+    - Back to top button (smooth scroll)
+
+=== PAGE: catalog.html ===
+- Sidebar filters:
+  Category (All | Horseshoes | Nails)
+  Sort (Price asc/desc | Name | Popular)
+  Search input with live filtering
+- Products grid (3 cols desktop, 2 tablet, 1 mobile)
+- Fetches from GET /api/products
+- Renders cards dynamically with JS
+- "В корзину" button on each card
+- Empty state if no results
+- Skeleton loading placeholders while fetching
+
+=== PAGE: product.html ===
+- Reads ?id= from URL
+- Fetches from GET /api/products/:id
+- Layout:
+  Left: product image (large) with zoom on hover
+  Right: name, sizes, specs table, price (pair + box),
+  quantity selector, "В корзину" button,
+  "Заказать оптом" link to contact
+- Specs accordion (expandable)
+- Related products (3 cards at bottom)
+
+=== PAGE: cart.html ===
+- Reads cart from localStorage
+- Table: product | size | qty (editable) | price | remove
+- Order summary block (right):
+  Subtotal, shipping note, total
+  "Оформить заказ" button → checkout.html
+- Empty cart state with illustration and CTA
+
+=== PAGE: checkout.html ===
+- Multi-step form (3 steps with progress bar):
+  Step 1: Contact info (name, phone, email)
+  Step 2: Delivery (city, address, transport company)
+  Step 3: Confirmation (order review + submit)
+- POST to /api/order on final submit
+- Order summary sidebar (sticky on desktop)
+- Success page after submission
+
+=== CART LOGIC (cart.js) ===
+- localStorage key: "pb_cart"
+- Functions:
+  addToCart(product, qty, unit)
+  removeFromCart(id)
+  updateQty(id, qty)
+  getCart()
+  getCartCount()
+  getCart

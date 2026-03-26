@@ -1,0 +1,27 @@
+packages:
+  "framer-motion": "Page transitions, scroll-triggered animations, and custom cursor"
+  "react-hook-form": "Form state management"
+  "@hookform/resolvers": "Zod validation for react-hook-form"
+  "zod": "Schema definition and validation"
+
+images:
+  - path: "artifacts/perfect-balance/public/images/logo.png"
+    description: "Minimalist elegant geometric logo mark for a luxury equestrian horseshoe brand, gold on transparent background"
+    aspect_ratio: "1:1"
+  - path: "artifacts/perfect-balance/public/images/hero-bg.png"
+    description: "Dark cinematic macro photography of a glowing forge and anvil, moody atmosphere, subtle gold sparks"
+    aspect_ratio: "16:9"
+  - path: "artifacts/perfect-balance/public/images/horseshoes.png"
+    description: "Professional steel sports horseshoes arranged elegantly on a dark textured background with dramatic lighting"
+    aspect_ratio: "4:3"
+  - path: "artifacts/perfect-balance/public/images/nails.png"
+    description: "Close up macro shot of premium horseshoe nails, dark background, sharp details, luxury lighting"
+    aspect_ratio: "4:3"
+  - path: "artifacts/perfect-balance/public/images/pattern.png"
+    description: "Abstract subtle geometric pattern in dark gray and black for background texture, luxury feel"
+    aspect_ratio: "16:9"
+
+notes:
+  - Assumes Cart uses localStorage for persistence
+  - Implements luxury dark theme with gold accents
+  - Assumes Wouter is used for routing
