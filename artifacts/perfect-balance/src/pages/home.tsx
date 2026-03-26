@@ -8,6 +8,7 @@ import { useSubmitContact, useGetProducts } from "@workspace/api-client-react";
 import { useToast } from "@/hooks/use-toast";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { ProductCard } from "@/components/ProductCard";
+import { BrandStory } from "@/components/BrandStory";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Введите имя"),
@@ -149,6 +150,9 @@ export default function Home() {
           </div>
         </section>
       )}
+
+      {/* BRAND STORY */}
+      <BrandStory />
 
       {/* CATEGORY SPLIT */}
       <section className="grid grid-cols-1 md:grid-cols-2 h-[600px]">

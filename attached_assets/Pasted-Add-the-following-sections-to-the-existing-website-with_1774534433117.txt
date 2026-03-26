@@ -1,0 +1,183 @@
+Add the following sections to the existing БУЛАТ website 
+without breaking any existing code.
+
+=== 1. BRAND STORY SECTION (добавить после featured products) ===
+
+Add section id="history" to index.html.
+Full-page immersive cinematic storytelling layout.
+
+SECTION HEADER (centered, dark bg):
+  Decorative gold line (80px) above title
+  H2 (huge, Playfair Display): "30 ЛЕТ В СЕДЛЕ"
+  Gold subtitle: "История бренда БУЛАТ • С 1995 года"
+  Subtext: "Из рязанской кузницы — к поставкам 
+  по всей России"
+
+LAYOUT RULES:
+  Each chapter = full-width block, min-height 90vh
+  Odd chapters: image LEFT 55% + text RIGHT 45%
+  Even chapters: text LEFT 45% + image RIGHT 55%
+  Mobile: image TOP (50vh) + text BOTTOM (stacked)
+  Images: object-fit cover, parallax scroll effect
+  Dark overlay on each image: rgba(0,0,0,0.45)
+  Huge year number on image (font-size 200px, 
+  opacity 0.12, color white, absolute positioned)
+  Text panels: background #1a1a1a, padding 60px
+  Gold vertical line (3px) on inner edge of text panel
+  Scroll-triggered fade+slide animations on text
+
+--- CHAPTER 1 ---
+Image:
+https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=1400&q=85
+Year overlay: 1995
+Gold label: "ГЛАВА I • 1995"
+H3 (Playfair Display, white, 36px): 
+  "Рождённые в кузнице"
+Gold italic quote (24px):
+  "Один кузнец. Одна мечта. Одна наковальня."
+Gold divider (40px line)
+Body text (white, 16px, line-height 1.8):
+  "Всё началось в небольшой кузнице под Рязанью 
+  в 1995 году. Михаил Булатов — потомственный 
+  кузнец в третьем поколении — вернулся из армии 
+  и встал к наковальне своего деда. Вокруг царили 
+  девяностые: хаос, безденежье, распад колхозных 
+  конюшен. Но лошади никуда не делись. И им 
+  по-прежнему были нужны подковы. Михаил заметил 
+  простую вещь: качественных подков в России почти 
+  не было. Импорт стоил как крыло самолёта, 
+  а отечественное гнулось после первой же скачки. 
+  Он решил: буду делать сам. Так родился БУЛАТ."
+
+--- CHAPTER 2 ---
+Image:
+https://images.unsplash.com/photo-1449927482389-c0e6670f4a1e?w=1400&q=85
+Year overlay: 2000
+Gold label: "ГЛАВА II • 1998–2003"
+H3: "Первые победители"
+Gold quote: "Нас не рекламировали. 
+Нас передавали из уст в уста."
+Body:
+  "Первыми клиентами стали местные конюшни 
+  Рязанской и Тульской областей. Ковали брали 
+  подковы БУЛАТ и возвращались снова — потому что 
+  они держались. Потому что геометрия была точной. 
+  Потому что сталь не подводила. К 2000 году 
+  о БУЛАТ знали уже в десяти регионах. Никакой 
+  рекламы — только сарафанное радио среди ковалей. 
+  В 2003 году БУЛАТ впервые поставил подковы 
+  на крупный КСК Подмосковья. Лошади выступали 
+  в них на региональных соревнованиях. И побеждали."
+
+--- CHAPTER 3 ---
+Image:
+https://images.unsplash.com/photo-1508747703725-719777637510?w=1400&q=85
+Year overlay: 2008
+Gold label: "ГЛАВА III • 2005–2012"
+H3: "Федеральный масштаб"
+Gold quote: "Из кузницы — на федеральный уровень."
+Body:
+  "С 2005 года БУЛАТ начал системные поставки 
+  по всей России. Открылся первый склад в Москве. 
+  Появилась полная линейка размеров — от лёгких 
+  прогулочных до мощных спортивных. В 2008 году 
+  к подковам добавились ковочные гвозди БУЛАТ Nails 
+  — собственная разработка, которая быстро стала 
+  любимым инструментом профессиональных ковалей. 
+  К 2010 году БУЛАТ работал с более чем 150 
+  конно-спортивными клубами по всей стране."
+
+--- CHAPTER 4 ---
+Image:
+https://images.unsplash.com/photo-1534307671554-9a6d81f4d629?w=1400&q=85
+Year overlay: 2014
+Gold label: "ГЛАВА IV • 2014–2016"
+H3: "Кризис закаляет"
+Gold quote: "Как булатная сталь."
+Body:
+  "Когда грянул кризис 2014 года и курс рубля 
+  рухнул — импортные подковы взлетели в цене вдвое. 
+  Многие конюшни оказались перед выбором: платить 
+  втридорога или искать альтернативу. БУЛАТ стал 
+  этой альтернативой. Не потому что был дешевле — 
+  а потому что был свой, надёжный и всегда в наличии. 
+  Именно в эти годы клиентская база БУЛАТ выросла 
+  втрое. Кризис стал точкой роста."
+
+--- CHAPTER 5 ---
+Image:
+https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1400&q=85
+Year overlay: 2020
+Gold label: "ГЛАВА V • 2018–2022"
+H3: "Цифровая эпоха"
+Gold quote: "Кузница встречает интернет."
+Body:
+  "В 2018 году БУЛАТ запустил интернет-магазин 
+  и начал принимать заказы онлайн со всей России. 
+  Доставка транспортными компаниями, электронный 
+  документооборот, личный менеджер для каждого 
+  клуба. В 2020 году, когда пандемия ударила 
+  по многим бизнесам, конные клубы продолжали 
+  работать. И БУЛАТ продолжал поставлять. 
+  Бесперебойно."
+
+--- CHAPTER 6 (FINALE) ---
+Full width dark block (no split), centered content
+Background image with heavy overlay:
+https://images.unsplash.com/photo-1553284965-5dd8352ff94d?w=1800&q=85
+Overlay: rgba(0,0,0,0.80)
+Gold label: "СЕГОДНЯ • 2025"
+H2 (huge, white): "30 лет. 500+ клиентов."
+H2 line 2 (gold): "Тысячи победителей."
+Body (white, centered, max-width 700px):
+  "Сегодня БУЛАТ — это 30 лет на рынке 
+  профессиональной ковки, 500+ конюшен и КСК 
+  по всей России, поставки в 50+ регионов 
+  от Калининграда до Владивостока. Мы не изменили 
+  главному принципу Михаила Булатова — качество 
+  прежде всего. Каждая подкова проходит контроль. 
+  Каждый клиент получает личного менеджера. 
+  Каждая лошадь заслуживает лучшего."
+Gold italic blockquote (large):
+  "Булатная сталь не ломается. Она закаляется.
+  Именно так мы строили этот бренд — 
+  30 лет подряд."
+Attribution: "— Михаил Булатов, основатель БУЛАТ"
+4 animated stat counters:
+  30 лет | 500+ клиентов | 50+ регионов | 1995 год основания
+CTA button (gold, large): "Перейти в каталог"
+
+=== 2. ANIMATIONS (добавить в существующий main.js) ===
+
+Add IntersectionObserver for all .chapter blocks:
+  - Text panel: slides in from left/right (translateX ±60px)
+  - Image: subtle zoom from scale(1.05) to scale(1.0)
+  - Year overlay: fades in slowly
+  - Each element staggers by 150ms
+  - Trigger at 20% visibility
+
+Add parallax on all chapter images:
+  On scroll: image moves at 0.3x scroll speed
+  Use requestAnimationFrame for performance
+
+=== 3. NAVBAR UPDATE ===
+Add "История" link to navbar pointing to #history
+Keep all existing links intact
+
+=== 4. RESPONSIVE (добавить в responsive.css) ===
+@media (max-width: 768px):
+  .chapter { flex-direction: column }
+  .chapter-image { width: 100%; height: 50vh }
+  .chapter-text { width: 100%; padding: 40px 24px }
+  .year-overlay { font-size: 100px }
+  h3.chapter-title { font-size: 26px }
+
+=== IMPORTANT RULES ===
+- Do NOT delete or modify any existing sections
+- Only ADD new code
+- Keep all existing CSS variables and design tokens
+- All new styles go into style.css (append at bottom)
+- All new JS goes into main.js (append at bottom)
+- Test that existing cart, catalog, navbar still work
+- Images load lazily (loading="lazy" attribute)
+- All text is in Russian

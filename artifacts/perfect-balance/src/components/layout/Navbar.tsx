@@ -27,6 +27,11 @@ export function Navbar() {
     { href: "/catalog", label: "Каталог" },
   ];
 
+  const anchorLinks = [
+    { href: "#history", label: "История" },
+    { href: "#contact", label: "Контакты" },
+  ];
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
@@ -58,9 +63,15 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
-          <a href="#contact" className="text-sm font-medium tracking-wide uppercase transition-colors hover:text-primary text-white/80">
-            Контакты
-          </a>
+          {anchorLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="text-sm font-medium tracking-wide uppercase transition-colors hover:text-primary text-white/80"
+            >
+              {link.label}
+            </a>
+          ))}
         </nav>
 
         <div className="flex items-center gap-5">
@@ -111,13 +122,16 @@ export function Navbar() {
                   {link.label}
                 </Link>
               ))}
-              <a 
-                href="#contact" 
-                onClick={() => setMobileMenuOpen(false)}
-                className="font-display text-3xl text-white hover:text-primary transition-colors"
-              >
-                Контакты
-              </a>
+              {anchorLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="font-display text-3xl text-white hover:text-primary transition-colors"
+                >
+                  {link.label}
+                </a>
+              ))}
               <Link 
                 href="/catalog" 
                 className="mt-8 px-8 py-4 bg-primary text-primary-foreground font-bold uppercase tracking-widest rounded-sm"
