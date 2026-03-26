@@ -66,19 +66,13 @@ export function Footer() {
           <div>
             <h4 className="font-display text-lg text-white mb-6">Связь с нами</h4>
             <ul className="space-y-4 text-sm text-muted-foreground">
-              <li>
-                <a href="tel:+79991234567" className="hover:text-primary transition-colors">
-                  +7 (999) 123-45-67
-                </a>
-              </li>
-              <li>
-                <a href="mailto:info@perfect-balance.ru" className="hover:text-primary transition-colors">
-                  info@perfect-balance.ru
-                </a>
+              <li className="leading-relaxed">
+                <p>141002, Московская обл.,</p>
+                <p>г. Мытищи, ул. Шараповская,</p>
+                <p>д. 4, корп. 2</p>
               </li>
               <li className="pt-2">
                 <p>Пн-Пт: 09:00 - 18:00</p>
-                <p>Москва, ул. Примерная, 10</p>
               </li>
             </ul>
           </div>
@@ -86,7 +80,7 @@ export function Footer() {
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Perfect Balance. Все права защищены.
+            © {new Date().getFullYear()} Perfect Balance. Все права защищены. ИП Фролов Алексей Леонтьевич · ИНН 502911262470 · ОГРНИП 319508100094886
           </p>
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

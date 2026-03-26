@@ -229,22 +229,32 @@ export default function Home() {
               </p>
               
               <div className="space-y-6">
-                <div className="flex items-center gap-4 text-white">
-                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
-                    <span className="font-bold font-display">Т</span>
+                <div className="flex items-start gap-4 text-white">
+                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary shrink-0">
+                    <span className="font-bold font-display text-sm">ИП</span>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Телефон</p>
-                    <a href="tel:+79991234567" className="text-lg hover:text-primary transition-colors">+7 (999) 123-45-67</a>
+                    <p className="text-sm text-muted-foreground mb-1">Юридическое лицо</p>
+                    <p className="text-base leading-snug">ИП Фролов Алексей Леонтьевич</p>
+                    <p className="text-sm text-muted-foreground mt-1">ИНН: 502911262470 · ОГРНИП: 319508100094886</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4 text-white">
+                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary shrink-0">
+                    <span className="font-bold font-display text-sm">А</span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground mb-1">Адрес</p>
+                    <p className="text-base leading-snug">141002, Московская обл., г. Мытищи,<br/>ул. Шараповская, д. 4, корп. 2</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 text-white">
-                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
-                    <span className="font-bold font-display">E</span>
+                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary shrink-0">
+                    <span className="font-bold font-display text-sm">Ч</span>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Email</p>
-                    <a href="mailto:info@perfect-balance.ru" className="text-lg hover:text-primary transition-colors">info@perfect-balance.ru</a>
+                    <p className="text-sm text-muted-foreground mb-1">Часы работы</p>
+                    <p className="text-base">Пн–Пт: 09:00 – 18:00</p>
                   </div>
                 </div>
               </div>
