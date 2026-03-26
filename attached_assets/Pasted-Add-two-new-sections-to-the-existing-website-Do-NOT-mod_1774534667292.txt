@@ -1,0 +1,319 @@
+Add two new sections to the existing БУЛАТ website.
+Do NOT modify or delete any existing code.
+Append new styles to style.css, new JS to main.js.
+
+════════════════════════════════════════
+SECTION 1: REVIEWS / ОТЗЫВЫ
+════════════════════════════════════════
+
+Add section id="reviews" after #history section.
+
+--- SECTION HEADER ---
+Background: #f8f5ef
+Centered content:
+  Gold small label: "ОТЗЫВЫ КЛИЕНТОВ"
+  H2 (Playfair Display, 48px): "Нам доверяют 500+ конюшен"
+  Subtext (muted): "Реальные отзывы ковалей, КСК 
+  и владельцев лошадей со всей России"
+  
+  Rating summary block (centered):
+    Huge gold number: "4.9"
+    5 gold stars (★★★★★)
+    Text: "на основе 500+ отзывов"
+    3 mini bars:
+      Сервис      ████████████ 98%
+      Качество    ████████████ 99%
+      Доставка    ███████████░ 96%
+
+--- FILTER TABS ---
+Row of filter buttons (pill style):
+  [Все] [Ковали] [КСК] [Частные конюшни] [Владельцы]
+Active tab: gold background
+Click filters reviews by data-category attribute
+
+--- REVIEWS GRID ---
+3 columns desktop, 2 tablet, 1 mobile
+Show 6 reviews initially
+"Загрузить ещё" button loads next 6 (from JS array)
+
+Each review card:
+  White bg, subtle shadow, border-radius 16px
+  Padding 28px
+  TOP ROW:
+    Avatar (colored circle with initials, gold/dark colors)
+    Name (bold)
+    Role/city (muted, small)
+    Verified badge: "✓ Проверенный покупатель" (green, tiny)
+  STARS ROW:
+    Gold stars (4 or 5)
+    Date (muted, right-aligned)
+  PRODUCT TAG:
+    Small pill: "БУЛАТ Pro №2" (gold outline)
+  REVIEW TEXT:
+    16px, line-height 1.7, color #333
+  BOTTOM:
+    "Полезный отзыв? 👍 12" (like counter, clickable)
+  Hover: card lifts slightly
+
+--- REVIEWS DATA (hardcode in main.js) ---
+const reviews = [
+  {
+    id: 1,
+    name: "Александр Петров",
+    role: "Коваль",
+    city: "Москва",
+    category: "Ковали",
+    stars: 5,
+    date: "15 марта 2025",
+    product: "БУЛАТ Pro №2",
+    text: "Работаю ковалём уже 18 лет, перепробовал 
+    много марок. БУЛАТ — лучшее соотношение цены 
+    и качества на российском рынке. Геометрия точная, 
+    сталь не крошится, гвозди входят ровно. 
+    Заказываю уже третий год подряд, ни разу 
+    не подвели ни по качеству, ни по срокам.",
+    likes: 47
+  },
+  {
+    id: 2,
+    name: "Елена Соколова",
+    role: "Директор КСК «Алмазово»",
+    city: "Московская обл.",
+    category: "КСК",
+    stars: 5,
+    date: "2 февраля 2025",
+    product: "БУЛАТ Pro №3",
+    text: "Снабжаем наш клуб подковами БУЛАТ уже 
+    7 лет. 40 лошадей на постое, плюс спортивные. 
+    Всегда в наличии нужные размеры, отгрузка 
+    быстрая, менеджер на связи. Один раз была 
+    проблема с партией — заменили без вопросов. 
+    Вот это сервис.",
+    likes: 63
+  },
+  {
+    id: 3,
+    name: "Дмитрий Коваленко",
+    role: "Коваль, частная практика",
+    city: "Краснодар",
+    category: "Ковали",
+    stars: 5,
+    date: "28 января 2025",
+    product: "БУЛАТ Nails E4",
+    text: "Гвозди E4 — просто огонь. Раньше брал 
+    Mustad, но после того как цены взлетели — 
+    перешёл на БУЛАТ Nails. Честно говоря, 
+    по качеству не хуже. Вхождение чистое, 
+    загиб ровный. Коробки 250 штук хватает 
+    примерно на месяц работы.",
+    likes: 38
+  },
+  {
+    id: 4,
+    name: "Ирина Власова",
+    role: "Владелец 3 лошадей",
+    city: "Санкт-Петербург",
+    category: "Владельцы",
+    stars: 5,
+    date: "10 января 2025",
+    product: "БУЛАТ Pro №1",
+    text: "Покупаю подковы сама и передаю своему 
+    ковалю. Цены адекватные, качество стабильное. 
+    Заказывала уже 4 раза — доставка всегда 
+    приходит вовремя, упаковка надёжная. 
+    Очень довольна, рекомендую всем владельцам 
+    кто хочет сэкономить без потери качества.",
+    likes: 29
+  },
+  {
+    id: 5,
+    name: "Сергей Воронов",
+    role: "Тренер по конкуру",
+    city: "Казань",
+    category: "КСК",
+    stars: 5,
+    date: "22 декабря 2024",
+    product: "БУЛАТ Pro №3",
+    text: "Мои спортивные лошади выступают 
+    в подковах БУЛАТ уже 3 сезона. За это время 
+    — ни одного слетевшего на соревнованиях. 
+    Геометрия идеальная, сталь держит нагрузку. 
+    Буду рекомендовать коллегам по всему региону.",
+    likes: 55
+  },
+  {
+    id: 6,
+    name: "Наталья Громова",
+    role: "КСК «Звёздный»",
+    city: "Екатеринбург",
+    category: "КСК",
+    stars: 4,
+    date: "15 декабря 2024",
+    product: "БУЛАТ Pro №2",
+    text: "Хороший продукт, работаем второй год. 
+    Немного долго шла первая поставка — 5 дней 
+    вместо трёх, но менеджер предупредил заранее. 
+    Качество подков отличное, лошади ходят хорошо. 
+    В целом рекомендую, особенно для регионов 
+    где с ассортиментом туго.",
+    likes: 21
+  },
+  {
+    id: 7,
+    name: "Андрей Беляев",
+    role: "Коваль 25 лет стажа",
+    city: "Нижний Новгород",
+    category: "Ковали",
+    stars: 5,
+    date: "5 декабря 2024",
+    product: "БУЛАТ Pro №4",
+    text: "№4 беру для тяжёлых пород — тракены, 
+    владимирские тяжеловозы. Подкова держит 
+    форму даже при серьёзных нагрузках. 
+    Сталь не мягкая и не хрупкая — в самый раз. 
+    БУЛАТ знаю уже лет десять, марка проверенная.",
+    likes: 44
+  },
+  {
+    id: 8,
+    name: "Юлия Морозова",
+    role: "Частная конюшня «Рассвет»",
+    city: "Ростов-на-Дону",
+    category: "Частные конюшни",
+    stars: 5,
+    date: "28 ноября 2024",
+    product: "БУЛАТ Pro №2",
+    text: "У нас 12 лошадей, заказываем раз 
+    в квартал. Работаем с БУЛАТ уже 4 года. 
+    Цены стабильные, не скачут каждый месяц 
+    как у некоторых. Менеджер Алексей всегда 
+    на связи, помогает с подбором. Отдельное 
+    спасибо за оперативность!",
+    likes: 33
+  },
+  {
+    id: 9,
+    name: "Максим Зайцев",
+    role: "Коваль, выезд по Подмосковью",
+    city: "Подольск",
+    category: "Ковали",
+    stars: 5,
+    date: "20 ноября 2024",
+    product: "БУЛАТ Nails E3",
+    text: "Гвозди E3 идеально подходят для молодых 
+    лошадей и тех у кого тонкая стенка копыта. 
+    Раньше приходилось искать специально — 
+    теперь беру у БУЛАТ. Качество стабильное 
+    от партии к партии, что очень важно 
+    в нашей работе.",
+    likes: 19
+  },
+  {
+    id: 10,
+    name: "Татьяна Орлова",
+    role: "КСК «Олимп»",
+    city: "Новосибирск",
+    category: "КСК",
+    stars: 5,
+    date: "10 ноября 2024",
+    product: "БУЛАТ Pro №3",
+    text: "Заказываем для 25 спортивных лошадей. 
+    БУЛАТ — наш основной поставщик уже 5 лет. 
+    Что нравится: всегда есть нужные размеры, 
+    документы оформляют быстро, доставка 
+    в Новосибирск занимает 3-4 дня. 
+    Качество стабильное, претензий нет.",
+    likes: 41
+  },
+  {
+    id: 11,
+    name: "Владимир Чернов",
+    role: "Профессиональный коваль",
+    city: "Воронеж",
+    category: "Ковали",
+    stars: 5,
+    date: "1 ноября 2024",
+    product: "БУЛАТ Pro №2",
+    text: "Обслуживаю 8 конюшен в регионе, 
+    расход подков большой. С БУЛАТ работаю 
+    потому что: цена честная, качество 
+    предсказуемое, и главное — никогда 
+    не подводили со сроками. Для ковалей 
+    это критически важно.",
+    likes: 52
+  },
+  {
+    id: 12,
+    name: "Ольга Степанова",
+    role: "Владелец лошади",
+    city: "Самара",
+    category: "Владельцы",
+    stars: 5,
+    date: "25 октября 2024",
+    product: "БУЛАТ Pro №1",
+    text: "Моя кобыла ходит в подковах БУЛАТ №1 
+    уже два года. Коваль сам посоветовал этот 
+    бренд. Очень довольна — подковы держатся 
+    хорошо, лошадь не хромает, копыта 
+    в порядке. Буду заказывать дальше.",
+    likes: 17
+  }
+]
+
+--- LOAD MORE LOGIC ---
+Show first 6 reviews on page load
+Button "Загрузить ещё отзывы (показано 6 из 500)"
+On click: render next 6, update counter
+When all 12 shown: change button to 
+  "Все отзывы загружены ✓" (disabled, grey)
+Filter buttons re-filter from full array and reset pagination
+
+--- WRITE REVIEW BANNER ---
+After grid, dark bg banner:
+  Text: "Уже работаете с БУЛАТ?"
+  Subtext: "Оставьте отзыв и получите скидку 
+  5% на следующий заказ"
+  Button: "Написать отзыв" 
+  Click: smooth scroll to #contact form
+  Pre-fill subject field with "Хочу оставить отзыв"
+
+════════════════════════════════════════
+SECTION 2: КАЛЬКУЛЯТОР ПОДКОВ
+════════════════════════════════════════
+
+Add section id="calculator" between products and history.
+
+--- DESIGN ---
+Background: dark #1a1a1a with subtle gold grid pattern
+  (CSS: repeating-linear-gradient gold lines, opacity 0.03)
+Centered layout, max-width 900px
+
+--- HEADER ---
+Gold label: "КАЛЬКУЛЯТОР"
+H2 (white, Playfair Display): "Сколько подков нужно 
+вашей конюшне?"
+Subtext (muted): "Рассчитайте точное количество 
+и стоимость за год"
+
+--- CALCULATOR UI ---
+Card: dark bg, gold border, border-radius 20px, padding 48px
+Glass morphism effect (backdrop-filter: blur)
+
+STEP 1 — ЛОШАДИ:
+  Label: "Количество лошадей"
+  Large number input with +/- buttons (gold)
+  Min: 1, Max: 500, Default: 5
+  Below input: pill tags for quick select:
+    [1 лошадь] [5 лошадей] [10 лошадей] 
+    [25 лошадей] [50 лошадей]
+  Click pill → sets input value
+
+STEP 2 — ТИП ИСПОЛЬЗОВАНИЯ:
+  Label: "Тип использования"
+  4 cards in a row (select one, gold border on active):
+    Card 1: 🏃 "Прогулочные"
+      Subtext: "Ковка 4 раза в год"
+      Data: times_per_year = 4
+    Card 2: 🏇 "Спортивные"
+      Subtext: "Ковка 6 раз в год"
+      Data: times_per_year = 6

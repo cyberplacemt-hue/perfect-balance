@@ -9,6 +9,8 @@ import { useToast } from "@/hooks/use-toast";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { ProductCard } from "@/components/ProductCard";
 import { BrandStory } from "@/components/BrandStory";
+import { Calculator } from "@/components/Calculator";
+import { Reviews } from "@/components/Reviews";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Введите имя"),
@@ -114,12 +116,12 @@ export default function Home() {
       {/* MARQUEE */}
       <div className="w-full bg-primary/10 border-y border-primary/20 py-4 overflow-hidden relative flex">
         <div className="flex whitespace-nowrap animate-marquee items-center text-primary uppercase font-display tracking-[0.2em] text-sm">
-          <span className="mx-8">• Perfect Balance</span>
+          <span className="mx-8">• БУЛАТ</span>
           <span className="mx-8">• Спортивные подковы</span>
           <span className="mx-8">• Доставка по России</span>
           <span className="mx-8">• Работаем с ковалями и КСК</span>
           <span className="mx-8">• Качественная сталь</span>
-          <span className="mx-8">• Perfect Balance</span>
+          <span className="mx-8">• БУЛАТ</span>
           <span className="mx-8">• Спортивные подковы</span>
           <span className="mx-8">• Доставка по России</span>
           <span className="mx-8">• Работаем с ковалями и КСК</span>
@@ -190,7 +192,7 @@ export default function Home() {
       <section className="py-24 bg-[#0a0a0a]" id="about">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="font-display text-4xl text-white mb-4">Почему Perfect Balance?</h2>
+            <h2 className="font-display text-4xl text-white mb-4">Почему БУЛАТ?</h2>
             <p className="text-muted-foreground">Мы создаем продукцию, которая отвечает самым высоким стандартам конного спорта.</p>
           </div>
           

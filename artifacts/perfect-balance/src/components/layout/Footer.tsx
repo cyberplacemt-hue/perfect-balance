@@ -9,11 +9,11 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-3 group inline-block">
               <img 
                 src={`${import.meta.env.BASE_URL}images/logo.png`} 
-                alt="Perfect Balance Logo" 
+                alt="БУЛАТ Logo" 
                 className="w-12 h-12 object-contain"
               />
               <span className="font-display text-xl tracking-wide text-white group-hover:text-primary transition-colors">
-                Perfect Balance
+                БУЛАТ
               </span>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
@@ -80,7 +80,7 @@ export function Footer() {
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Perfect Balance. Все права защищены. ИП Фролов Алексей Леонтьевич · ИНН 502911262470 · ОГРНИП 319508100094886
+            © {new Date().getFullYear()} БУЛАТ. Все права защищены. ИП Фролов Алексей Леонтьевич · ИНН 502911262470 · ОГРНИП 319508100094886
           </p>
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
