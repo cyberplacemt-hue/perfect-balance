@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { ProductCard } from "@/components/ProductCard";
@@ -6,11 +6,24 @@ import { useGetProducts } from "@workspace/api-client-react";
 import { Search, Filter } from "lucide-react";
 
 export default function Catalog() {
-  const [searchParams] = useState(new URLSearchParams(window.location.search));
-  const defaultCategory = searchParams.get("category") || "Все";
-  
-  const [category, setCategory] = useState(defaultCategory);
+  const [location] = useLocation();
+  const [category, setCategory] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("category") || "Все";
+  });
   const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    document.title = "Каталог — БУЛАТ";
+    return () => { document.title = "БУЛАТ — Профессиональные подковы"; };
+  }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const cat = params.get("category");
+    setCategory(cat || "Все");
+    setSearch("");
+  }, [location]);
   
   const { data: products, isLoading } = useGetProducts(
     category !== "Все" ? { category } : undefined

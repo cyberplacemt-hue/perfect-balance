@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowRight, ShieldCheck, Truck, PackageSearch, Star } from "lucide-react";
+import { ArrowRight, ShieldCheck, Truck, PackageSearch, Star, Phone } from "lucide-react";
 import { useSubmitContact, useGetProducts } from "@workspace/api-client-react";
 import { useToast } from "@/hooks/use-toast";
 import { AppLayout } from "@/components/layout/AppLayout";
@@ -253,11 +253,22 @@ export default function Home() {
                 </div>
                 <div className="flex items-start gap-4 text-white">
                   <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary shrink-0">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground mb-1">Телефон</p>
+                    <a href="tel:89150016878" className="text-lg font-semibold text-primary hover:text-white transition-colors">
+                      8 (915) 001-68-78
+                    </a>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4 text-white">
+                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary shrink-0">
                     <span className="font-bold font-display text-sm">А</span>
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">Адрес</p>
-                    <p className="text-base leading-snug">141002, Московская обл., г. Мытищи,<br/>ул. Шараповская, д. 4, корп. 2</p>
+                    <p className="text-base leading-snug">г. Мытищи, Московская обл.</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 text-white">

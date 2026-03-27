@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { ShoppingBag, Menu, X } from "lucide-react";
+import { ShoppingBag, Menu, X, Phone } from "lucide-react";
 import { useCart } from "@/hooks/use-cart";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -88,6 +88,13 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-5">
+          <a
+            href="tel:89150016878"
+            className="hidden lg:flex items-center gap-1.5 text-white/70 hover:text-primary transition-colors text-sm font-medium"
+          >
+            <Phone className="w-4 h-4" />
+            8 (915) 001-68-78
+          </a>
           <Link href="/cart" className="relative group p-2">
             <ShoppingBag className="w-5 h-5 text-white/80 group-hover:text-primary transition-colors" />
             {cartCount > 0 && (
@@ -151,6 +158,14 @@ export function Navbar() {
               >
                 Перейти в каталог
               </Link>
+              <a
+                href="tel:89150016878"
+                className="flex items-center gap-2 text-white/70 hover:text-primary transition-colors text-lg"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <Phone className="w-5 h-5" />
+                8 (915) 001-68-78
+              </a>
             </div>
           </motion.div>
         )}

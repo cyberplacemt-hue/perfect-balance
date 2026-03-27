@@ -1,19 +1,31 @@
-import { useState } from "react";
-import { useRoute } from "wouter";
+import { useState, useEffect } from "react";
+import { useRoute, Link } from "wouter";
 import { AppLayout } from "@/components/layout/AppLayout";
-import { useGetProduct } from "@workspace/api-client-react";
+import { useGetProduct, useGetProducts } from "@workspace/api-client-react";
 import { useCart } from "@/hooks/use-cart";
 import { Minus, Plus, ShoppingCart, ArrowLeft, CheckCircle } from "lucide-react";
-import { Link } from "wouter";
+import { ProductCard } from "@/components/ProductCard";
 
 export default function ProductDetail() {
   const [, params] = useRoute("/product/:id");
   const productId = Number(params?.id);
   
   const { data: product, isLoading, isError } = useGetProduct(productId);
+  const { data: allProducts } = useGetProducts();
   const { addToCart } = useCart();
   const [qty, setQty] = useState(1);
   const [isAdded, setIsAdded] = useState(false);
+
+  useEffect(() => {
+    if (product) {
+      document.title = `${product.name} — БУЛАТ`;
+      return () => { document.title = "БУЛАТ — Профессиональные подковы"; };
+    }
+  }, [product]);
+
+  const related = allProducts
+    ?.filter(p => p.id !== productId && p.category === product?.category)
+    .slice(0, 4) ?? [];
 
   if (isLoading) {
     return (
@@ -162,6 +174,19 @@ export default function ProductDetail() {
           </div>
         </div>
       </div>
+
+      {related.length > 0 && (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+          <h2 className="font-display text-2xl text-white mb-8 border-b border-white/10 pb-4">
+            Похожие товары
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {related.map(p => (
+              <ProductCard key={p.id} product={p} />
+            ))}
+          </div>
+        </div>
+      )}
     </AppLayout>
   );
 }
