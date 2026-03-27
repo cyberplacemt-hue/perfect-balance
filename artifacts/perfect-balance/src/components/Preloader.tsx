@@ -35,7 +35,7 @@ export function Preloader() {
             transition={{ delay: 0.5, duration: 0.5 }}
             className="font-display text-2xl tracking-widest text-primary uppercase"
           >
-            PERFECT BALANCE
+            БУЛАТ
           </motion.h1>
         </motion.div>
       )}

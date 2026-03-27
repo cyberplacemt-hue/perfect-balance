@@ -153,8 +153,14 @@ export default function Home() {
         </section>
       )}
 
+      {/* CALCULATOR */}
+      <Calculator />
+
       {/* BRAND STORY */}
       <BrandStory />
+
+      {/* REVIEWS */}
+      <Reviews />
 
       {/* CATEGORY SPLIT */}
       <section className="grid grid-cols-1 md:grid-cols-2 h-[600px]">
