@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -34,10 +34,11 @@ export default function Checkout() {
     mode: "onBlur"
   });
 
-  if (items.length === 0 && !isSuccess) {
-    setLocation("/cart");
-    return null;
-  }
+  useEffect(() => {
+    if (items.length === 0 && !isSuccess) {
+      setLocation("/cart");
+    }
+  }, [items.length, isSuccess, setLocation]);
 
   const handleNextStep = async () => {
     let isValid = false;

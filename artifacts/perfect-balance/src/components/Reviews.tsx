@@ -364,11 +364,14 @@ export function Reviews() {
           </p>
           <a
             href="#contact"
-            onClick={() => {
-              setTimeout(() => {
-                const el = document.getElementById("contact-subject") as HTMLInputElement | null;
-                if (el) el.value = "Хочу оставить отзыв";
-              }, 600);
+            onClick={(e) => {
+              e.preventDefault();
+              const contact = document.getElementById("contact");
+              if (contact) {
+                contact.scrollIntoView({ behavior: "smooth" });
+              } else {
+                window.location.href = "/#contact";
+              }
             }}
             className="inline-block bg-[#c8a84b] hover:bg-[#a8882b] text-[#1a1a1a] px-10 py-3 font-bold uppercase tracking-widest transition-all duration-300 rounded-sm"
           >

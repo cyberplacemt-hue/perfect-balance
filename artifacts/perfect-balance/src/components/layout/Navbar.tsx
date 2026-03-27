@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { ShoppingBag, Menu, X } from "lucide-react";
 import { useCart } from "@/hooks/use-cart";
@@ -8,7 +8,7 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { cartCount } = useCart();
-  const [location] = useLocation();
+  const [location, navigate] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,9 +28,21 @@ export function Navbar() {
   ];
 
   const anchorLinks = [
-    { href: "#history", label: "История" },
-    { href: "#contact", label: "Контакты" },
+    { id: "history", label: "История" },
+    { id: "contact", label: "Контакты" },
   ];
+
+  const handleAnchorClick = (e: React.MouseEvent, sectionId: string) => {
+    e.preventDefault();
+    if (location === "/") {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/");
+      setTimeout(() => {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+      }, 350);
+    }
+  };
 
   return (
     <header
@@ -65,9 +77,10 @@ export function Navbar() {
           ))}
           {anchorLinks.map((link) => (
             <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium tracking-wide uppercase transition-colors hover:text-primary text-white/80"
+              key={link.id}
+              href={`#${link.id}`}
+              onClick={(e) => handleAnchorClick(e, link.id)}
+              className="text-sm font-medium tracking-wide uppercase transition-colors hover:text-primary text-white/80 cursor-pointer"
             >
               {link.label}
             </a>
@@ -124,10 +137,10 @@ export function Navbar() {
               ))}
               {anchorLinks.map((link) => (
                 <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="font-display text-3xl text-white hover:text-primary transition-colors"
+                  key={link.id}
+                  href={`#${link.id}`}
+                  onClick={(e) => { setMobileMenuOpen(false); handleAnchorClick(e, link.id); }}
+                  className="font-display text-3xl text-white hover:text-primary transition-colors cursor-pointer"
                 >
                   {link.label}
                 </a>
