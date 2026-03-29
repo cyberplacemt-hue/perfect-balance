@@ -1,0 +1,9 @@
+{
+  "name": "vercel-api",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "cors": "^2",
+    "express": "^5"
+  }
+}
