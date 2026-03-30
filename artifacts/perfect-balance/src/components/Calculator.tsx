@@ -4,22 +4,22 @@ import { Link } from "wouter";
 
 const usageTypes = [
   {
-    image: "https://images.unsplash.com/photo-1468440175628-9d5836cd6fc6?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1449927482389-c0e6670f4a1e?w=600&q=80",
     alt: "Лошадь на прогулке в природе",
     label: "Прогулочные",
     sub: "Ковка 4 раза в год",
     timesPerYear: 4,
   },
   {
-    image: "https://images.unsplash.com/photo-1477520270460-2cb01b7b7fd9?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1553284965-5dd8352ff94d?w=600&q=80",
     alt: "Спортивная лошадь на соревновании",
     label: "Спортивные",
     sub: "Ковка 6 раз в год",
     timesPerYear: 6,
   },
   {
-    image: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80",
-    alt: "Рабочая лошадь в упряжи",
+    image: "https://images.unsplash.com/photo-1508747703725-719777637510?w=600&q=80",
+    alt: "Рабочая лошадь на конюшне",
     label: "Рабочие",
     sub: "Ковка 8 раз в год",
     timesPerYear: 8,
@@ -175,7 +175,6 @@ export function Calculator() {
                   <img
                     src={u.image}
                     alt={u.alt}
-                    loading="lazy"
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                   />
                   <div className={`absolute inset-0 transition-all duration-200 ${
