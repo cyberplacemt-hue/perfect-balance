@@ -165,33 +165,41 @@ export function Calculator() {
                 <button
                   key={u.label}
                   onClick={() => setUsageIdx(i)}
-                  className={`relative overflow-hidden rounded-xl border-2 text-left transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#c8a84b] ${
+                  className={`block w-full overflow-hidden rounded-xl border-2 text-left transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#c8a84b] ${
                     usageIdx === i
                       ? "border-[#c8a84b] shadow-lg shadow-[#c8a84b]/20"
                       : "border-white/10 hover:border-[#c8a84b]/50"
                   }`}
-                  style={{ aspectRatio: "1 / 1.1" }}
                 >
-                  <img
-                    src={u.image}
-                    alt={u.alt}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                  />
-                  <div className={`absolute inset-0 transition-all duration-200 ${
-                    usageIdx === i ? "bg-black/50" : "bg-black/65"
-                  }`} />
-                  {usageIdx === i && (
-                    <div className="absolute top-2 right-2 w-5 h-5 rounded-full bg-[#c8a84b] flex items-center justify-center">
-                      <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4L3.5 6.5L9 1" stroke="#1a1a1a" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
+                  {/* aspect-ratio wrapper — padding-top trick, работает стабильно во всех браузерах */}
+                  <div className="relative w-full" style={{ paddingTop: "115%" }}>
+                    <img
+                      src={u.image}
+                      alt={u.alt}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500"
+                      style={{ transform: "scale(1)" }}
+                    />
+                    {/* затемняющий overlay */}
+                    <div className={`absolute inset-0 transition-all duration-200 ${
+                      usageIdx === i ? "bg-black/40" : "bg-black/60"
+                    }`} />
+                    {/* галочка выбранного состояния */}
+                    {usageIdx === i && (
+                      <div className="absolute top-2 right-2 w-5 h-5 rounded-full bg-[#c8a84b] flex items-center justify-center z-10">
+                        <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4L3.5 6.5L9 1" stroke="#1a1a1a" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </div>
+                    )}
+                    {/* текст внизу карточки */}
+                    <div className="absolute bottom-0 left-0 right-0 z-10 px-3 py-2.5"
+                      style={{ background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%)" }}
+                    >
+                      <p className={`text-sm font-bold leading-tight mb-0.5 ${usageIdx === i ? "text-[#c8a84b]" : "text-white"}`}>
+                        {u.label}
+                      </p>
+                      <p className="text-white/75 text-xs leading-tight">{u.sub}</p>
                     </div>
-                  )}
-                  <div className="relative z-10 p-3 flex flex-col justify-end h-full">
-                    <p className={`text-sm font-bold mb-0.5 leading-tight ${usageIdx === i ? "text-[#c8a84b]" : "text-white"}`}>
-                      {u.label}
-                    </p>
-                    <p className="text-white/70 text-xs leading-tight">{u.sub}</p>
                   </div>
                 </button>
               ))}
