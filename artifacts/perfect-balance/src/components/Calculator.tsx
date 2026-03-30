@@ -4,6 +4,7 @@ import { Link } from "wouter";
 import horseLeisureImg from "../assets/horse-leisure.jpeg";
 import horseSportImg from "../assets/horse-sport.jpeg";
 import horseWorkImg from "../assets/horse-work.webp";
+import horseMixedImg from "../assets/horse-mixed.jpeg";
 
 const usageTypes = [
   {
@@ -28,8 +29,8 @@ const usageTypes = [
     timesPerYear: 8,
   },
   {
-    image: "https://images.unsplash.com/photo-1534307671554-9a6d81f4d629?w=600&q=80",
-    alt: "Лошадь в конно-спортивном клубе",
+    image: horseMixedImg,
+    alt: "Лошадь для смешанного типа использования",
     label: "Смешанные",
     sub: "Ковка 5 раз в год",
     timesPerYear: 5,
