@@ -1,11 +1,12 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "wouter";
+import horseLeisureImg from "../assets/horse-leisure.jpeg";
 
 const usageTypes = [
   {
-    image: "https://images.unsplash.com/photo-1449927482389-c0e6670f4a1e?w=600&q=80",
-    alt: "Лошадь на прогулке в природе",
+    image: horseLeisureImg,
+    alt: "Прогулочная лошадь на природе",
     label: "Прогулочные",
     sub: "Ковка 4 раза в год",
     timesPerYear: 4,
