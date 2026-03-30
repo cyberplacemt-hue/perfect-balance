@@ -1,6 +1,5 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Link } from "wouter";
 import horseLeisureImg from "../assets/horse-leisure.jpeg";
 import horseSportImg from "../assets/horse-sport.jpeg";
 import horseWorkImg from "../assets/horse-work.webp";
@@ -127,7 +126,7 @@ export function Calculator() {
                 value={horses}
                 onChange={e => setHorses(clamp(Number(e.target.value) || 1))}
                 aria-label="Количество лошадей"
-                className="w-24 h-12 bg-[#111] border-y border-[#c8a84b]/30 text-white text-2xl font-bold text-center focus:outline-none focus:border-[#c8a84b]"
+                className="w-24 h-12 bg-[#111] border-y border-[#c8a84b]/30 text-white text-2xl font-bold text-center focus:outline-none focus:border-[#c8a84b] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               />
               <button
                 onClick={() => setHorses(h => clamp(h + 1))}
@@ -240,20 +239,12 @@ export function Calculator() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-[#c8a84b]/15 to-[#c8a84b]/5 rounded-xl p-6 border border-[#c8a84b]/20 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-              <div>
-                <p className="text-white/60 text-sm mb-1">Ориентировочная стоимость в год</p>
-                <p className="font-display text-white text-4xl">{fmt(totalCost)}</p>
-                <p className="text-white/40 text-xs mt-1">
-                  Подковы {fmt(shoeCost)} + Гвозди {fmt(nailCost)}
-                </p>
-              </div>
-              <Link
-                href="/catalog"
-                className="flex-shrink-0 inline-block bg-[#c8a84b] hover:bg-[#a8882b] text-[#1a1a1a] px-8 py-3 font-bold uppercase tracking-widest transition-all duration-300 rounded-sm hover:shadow-lg hover:shadow-[#c8a84b]/30 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#c8a84b]"
-              >
-                Оформить заказ
-              </Link>
+            <div className="bg-gradient-to-r from-[#c8a84b]/15 to-[#c8a84b]/5 rounded-xl p-6 border border-[#c8a84b]/20">
+              <p className="text-white/60 text-sm mb-1">Ориентировочная стоимость в год</p>
+              <p className="font-display text-white text-4xl">{fmt(totalCost)}</p>
+              <p className="text-white/40 text-xs mt-1">
+                Подковы {fmt(shoeCost)} + Гвозди {fmt(nailCost)}
+              </p>
             </div>
 
             <p className="text-white/25 text-xs mt-4 text-center">
