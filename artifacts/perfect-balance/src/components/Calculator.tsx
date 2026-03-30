@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "wouter";
 import horseLeisureImg from "../assets/horse-leisure.jpeg";
+import horseSportImg from "../assets/horse-sport.jpeg";
 
 const usageTypes = [
   {
@@ -12,8 +13,8 @@ const usageTypes = [
     timesPerYear: 4,
   },
   {
-    image: "https://images.unsplash.com/photo-1553284965-5dd8352ff94d?w=600&q=80",
-    alt: "Спортивная лошадь на соревновании",
+    image: horseSportImg,
+    alt: "Спортивная лошадь на тренировке или соревнованиях",
     label: "Спортивные",
     sub: "Ковка 6 раз в год",
     timesPerYear: 6,
