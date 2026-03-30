@@ -39,12 +39,12 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/catalog?category=Подковы" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                  Подковы БУЛАТ Pro
+                  Подковы БУЛАТ ПРО
                 </Link>
               </li>
               <li>
                 <Link href="/catalog?category=Гвозди" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                  Гвозди БУЛАТ Nails
+                  Гвозди БУЛАТ
                 </Link>
               </li>
             </ul>

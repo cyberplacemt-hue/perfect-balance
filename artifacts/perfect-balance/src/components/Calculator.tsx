@@ -3,10 +3,34 @@ import { motion, useInView } from "framer-motion";
 import { Link } from "wouter";
 
 const usageTypes = [
-  { icon: "🏃", label: "Прогулочные", sub: "Ковка 4 раза в год", timesPerYear: 4 },
-  { icon: "🏇", label: "Спортивные", sub: "Ковка 6 раз в год", timesPerYear: 6 },
-  { icon: "🔨", label: "Рабочие", sub: "Ковка 8 раз в год", timesPerYear: 8 },
-  { icon: "🌟", label: "Смешанные", sub: "Ковка 5 раз в год", timesPerYear: 5 },
+  {
+    image: "https://images.unsplash.com/photo-1468440175628-9d5836cd6fc6?w=600&q=80",
+    alt: "Лошадь на прогулке в природе",
+    label: "Прогулочные",
+    sub: "Ковка 4 раза в год",
+    timesPerYear: 4,
+  },
+  {
+    image: "https://images.unsplash.com/photo-1477520270460-2cb01b7b7fd9?w=600&q=80",
+    alt: "Спортивная лошадь на соревновании",
+    label: "Спортивные",
+    sub: "Ковка 6 раз в год",
+    timesPerYear: 6,
+  },
+  {
+    image: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80",
+    alt: "Рабочая лошадь в упряжи",
+    label: "Рабочие",
+    sub: "Ковка 8 раз в год",
+    timesPerYear: 8,
+  },
+  {
+    image: "https://images.unsplash.com/photo-1534307671554-9a6d81f4d629?w=600&q=80",
+    alt: "Лошадь в конно-спортивном клубе",
+    label: "Смешанные",
+    sub: "Ковка 5 раз в год",
+    timesPerYear: 5,
+  },
 ];
 
 const quickCounts = [1, 5, 10, 25, 50];
@@ -46,7 +70,6 @@ export function Calculator() {
     >
       <div className="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Header */}
         <motion.div
           ref={ref}
           className="text-center mb-12"
@@ -65,7 +88,6 @@ export function Calculator() {
           </p>
         </motion.div>
 
-        {/* Card */}
         <motion.div
           className="rounded-2xl border border-[#c8a84b]/30 p-8 md:p-12"
           style={{
@@ -89,7 +111,8 @@ export function Calculator() {
             <div className="flex items-center gap-0 mb-5">
               <button
                 onClick={() => setHorses(h => clamp(h - 1))}
-                className="w-12 h-12 bg-[#c8a84b] hover:bg-[#a8882b] text-[#1a1a1a] text-2xl font-bold rounded-l-xl transition-colors flex items-center justify-center"
+                aria-label="Уменьшить количество лошадей"
+                className="w-12 h-12 bg-[#c8a84b] hover:bg-[#a8882b] text-[#1a1a1a] text-2xl font-bold rounded-l-xl transition-colors flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#c8a84b]"
               >
                 −
               </button>
@@ -99,23 +122,24 @@ export function Calculator() {
                 max={500}
                 value={horses}
                 onChange={e => setHorses(clamp(Number(e.target.value) || 1))}
-                className="w-24 h-12 bg-[#111] border-y border-[#c8a84b]/30 text-white text-2xl font-bold text-center focus:outline-none"
+                aria-label="Количество лошадей"
+                className="w-24 h-12 bg-[#111] border-y border-[#c8a84b]/30 text-white text-2xl font-bold text-center focus:outline-none focus:border-[#c8a84b]"
               />
               <button
                 onClick={() => setHorses(h => clamp(h + 1))}
-                className="w-12 h-12 bg-[#c8a84b] hover:bg-[#a8882b] text-[#1a1a1a] text-2xl font-bold rounded-r-xl transition-colors flex items-center justify-center"
+                aria-label="Увеличить количество лошадей"
+                className="w-12 h-12 bg-[#c8a84b] hover:bg-[#a8882b] text-[#1a1a1a] text-2xl font-bold rounded-r-xl transition-colors flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#c8a84b]"
               >
                 +
               </button>
             </div>
 
-            {/* Quick pills */}
             <div className="flex flex-wrap gap-2">
               {quickCounts.map(n => (
                 <button
                   key={n}
                   onClick={() => setHorses(n)}
-                  className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-all duration-200 ${
+                  className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#c8a84b] ${
                     horses === n
                       ? "bg-[#c8a84b] border-[#c8a84b] text-[#1a1a1a]"
                       : "border-white/20 text-white/70 hover:border-[#c8a84b] hover:text-[#c8a84b]"
@@ -141,17 +165,35 @@ export function Calculator() {
                 <button
                   key={u.label}
                   onClick={() => setUsageIdx(i)}
-                  className={`p-4 rounded-xl border-2 text-left transition-all duration-200 ${
+                  className={`relative overflow-hidden rounded-xl border-2 text-left transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#c8a84b] ${
                     usageIdx === i
-                      ? "border-[#c8a84b] bg-[#c8a84b]/10"
+                      ? "border-[#c8a84b] shadow-lg shadow-[#c8a84b]/20"
                       : "border-white/10 hover:border-[#c8a84b]/50"
                   }`}
+                  style={{ aspectRatio: "1 / 1.1" }}
                 >
-                  <div className="text-2xl mb-2">{u.icon}</div>
-                  <p className={`text-sm font-semibold mb-1 ${usageIdx === i ? "text-[#c8a84b]" : "text-white"}`}>
-                    {u.label}
-                  </p>
-                  <p className="text-white/50 text-xs">{u.sub}</p>
+                  <img
+                    src={u.image}
+                    alt={u.alt}
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                  <div className={`absolute inset-0 transition-all duration-200 ${
+                    usageIdx === i ? "bg-black/50" : "bg-black/65"
+                  }`} />
+                  {usageIdx === i && (
+                    <div className="absolute top-2 right-2 w-5 h-5 rounded-full bg-[#c8a84b] flex items-center justify-center">
+                      <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                        <path d="M1 4L3.5 6.5L9 1" stroke="#1a1a1a" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                  )}
+                  <div className="relative z-10 p-3 flex flex-col justify-end h-full">
+                    <p className={`text-sm font-bold mb-0.5 leading-tight ${usageIdx === i ? "text-[#c8a84b]" : "text-white"}`}>
+                      {u.label}
+                    </p>
+                    <p className="text-white/70 text-xs leading-tight">{u.sub}</p>
+                  </div>
                 </button>
               ))}
             </div>
@@ -197,7 +239,7 @@ export function Calculator() {
               </div>
               <Link
                 href="/catalog"
-                className="flex-shrink-0 inline-block bg-[#c8a84b] hover:bg-[#a8882b] text-[#1a1a1a] px-8 py-3 font-bold uppercase tracking-widest transition-all duration-300 rounded-sm hover:shadow-lg hover:shadow-[#c8a84b]/30 text-sm"
+                className="flex-shrink-0 inline-block bg-[#c8a84b] hover:bg-[#a8882b] text-[#1a1a1a] px-8 py-3 font-bold uppercase tracking-widest transition-all duration-300 rounded-sm hover:shadow-lg hover:shadow-[#c8a84b]/30 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#c8a84b]"
               >
                 Оформить заказ
               </Link>

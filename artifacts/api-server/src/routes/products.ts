@@ -9,8 +9,8 @@ const router: IRouter = Router();
 const products = [
   {
     id: 1,
-    name: "Perfect Balance №1",
-    category: "horseshoes",
+    name: "БУЛАТ ПРО №1",
+    category: "Подковы",
     sizes: "F 140×138×8 / H 133×136×8",
     size: null,
     package_qty: 20,
@@ -29,8 +29,8 @@ const products = [
   },
   {
     id: 2,
-    name: "Perfect Balance №2",
-    category: "horseshoes",
+    name: "БУЛАТ ПРО №2",
+    category: "Подковы",
     sizes: "F 146×142×8 / H 138×142×8",
     size: null,
     package_qty: 16,
@@ -49,8 +49,8 @@ const products = [
   },
   {
     id: 3,
-    name: "Perfect Balance №3",
-    category: "horseshoes",
+    name: "БУЛАТ ПРО №3",
+    category: "Подковы",
     sizes: "F 153×150×8 / H 146×150×8",
     size: null,
     package_qty: 16,
@@ -69,8 +69,8 @@ const products = [
   },
   {
     id: 4,
-    name: "Perfect Balance №4",
-    category: "horseshoes",
+    name: "БУЛАТ ПРО №4",
+    category: "Подковы",
     sizes: "F 158×158×8 / H 153×158×8",
     size: null,
     package_qty: 16,
@@ -89,8 +89,8 @@ const products = [
   },
   {
     id: 5,
-    name: "Гвоздь ковочный E3",
-    category: "nails",
+    name: "Гвозди БУЛАТ E3",
+    category: "Гвозди",
     sizes: null,
     size: "4.5 см",
     package_qty: 250,
@@ -104,8 +104,8 @@ const products = [
   },
   {
     id: 6,
-    name: "Гвоздь ковочный E4",
-    category: "nails",
+    name: "Гвозди БУЛАТ E4",
+    category: "Гвозди",
     sizes: null,
     size: "4.75 см",
     package_qty: 250,
@@ -119,8 +119,8 @@ const products = [
   },
   {
     id: 7,
-    name: "Гвоздь ковочный E5",
-    category: "nails",
+    name: "Гвозди БУЛАТ E5",
+    category: "Гвозди",
     sizes: null,
     size: "5.1 см",
     package_qty: 250,
@@ -148,14 +148,14 @@ router.get("/products/:id", async (req, res): Promise<void> => {
   const id = parseInt(raw, 10);
 
   if (isNaN(id)) {
-    res.status(400).json({ error: "Invalid product id" });
+    res.status(400).json({ error: "Некорректный идентификатор товара" });
     return;
   }
 
   const product = products.find((p) => p.id === id);
 
   if (!product) {
-    res.status(404).json({ error: "Product not found" });
+    res.status(404).json({ error: "Товар не найден" });
     return;
   }
 

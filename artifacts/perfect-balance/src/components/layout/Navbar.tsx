@@ -54,7 +54,7 @@ export function Navbar() {
         <Link href="/" className="flex items-center gap-3 group">
           <img 
             src={`${import.meta.env.BASE_URL}images/logo.png`} 
-            alt="Perfect Balance Logo" 
+            alt="Логотип БУЛАТ" 
             className="w-10 h-10 object-contain group-hover:scale-105 transition-transform"
           />
           <span className="font-display text-xl tracking-wide text-white group-hover:text-primary transition-colors">
