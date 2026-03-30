@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { Link } from "wouter";
 import horseLeisureImg from "../assets/horse-leisure.jpeg";
 import horseSportImg from "../assets/horse-sport.jpeg";
+import horseWorkImg from "../assets/horse-work.webp";
 
 const usageTypes = [
   {
@@ -20,8 +21,8 @@ const usageTypes = [
     timesPerYear: 6,
   },
   {
-    image: "https://images.unsplash.com/photo-1508747703725-719777637510?w=600&q=80",
-    alt: "Рабочая лошадь на конюшне",
+    image: horseWorkImg,
+    alt: "Рабочая лошадь в упряжке",
     label: "Рабочие",
     sub: "Ковка 8 раз в год",
     timesPerYear: 8,
