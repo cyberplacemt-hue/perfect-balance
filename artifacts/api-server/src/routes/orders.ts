@@ -122,6 +122,7 @@ ${itemsText}
 
   const user = process.env.MAIL_SMTP_USER!;
 
+  // 1. Уведомление администратору
   await transport.sendMail({
     from: `"БУЛАТ" <${user}>`,
     to: user,
@@ -129,6 +130,88 @@ ${itemsText}
     text,
     html,
   });
+
+  // 2. Подтверждение заказчику
+  if (data.email) {
+    const customerItemsHtml = (data.items ?? [])
+      .map(
+        (item: any) =>
+          `<tr>
+            <td style="padding:8px 12px;border-bottom:1px solid #2a2a2a;">${item.name}</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #2a2a2a;text-align:center;">${item.qty} ${item.unit}</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #2a2a2a;text-align:right;">${(item.price * item.qty).toLocaleString("ru-RU")} ₽</td>
+          </tr>`
+      )
+      .join("");
+
+    const customerHtml = `
+<!DOCTYPE html>
+<html lang="ru">
+<head><meta charset="UTF-8"/><title>Ваш заказ БУЛАТ</title></head>
+<body style="margin:0;padding:0;background:#0d0d0d;font-family:Arial,sans-serif;color:#e0e0e0;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:40px auto;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;overflow:hidden;">
+    <tr>
+      <td style="background:#111;padding:24px 32px;border-bottom:2px solid #c8a84b;">
+        <span style="font-size:22px;font-weight:bold;color:#c8a84b;letter-spacing:2px;">БУЛАТ</span>
+        <span style="font-size:14px;color:#999;margin-left:16px;">Подтверждение заказа</span>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:28px 32px;">
+        <p style="margin:0 0 8px;font-size:16px;color:#fff;">Здравствуйте, <b>${data.name}</b>!</p>
+        <p style="margin:0 0 24px;color:#999;font-size:14px;line-height:1.6;">
+          Ваш заказ <b style="color:#c8a84b;">#${orderId}</b> успешно принят.<br>
+          Наш менеджер свяжется с вами в ближайшее время для подтверждения доставки.
+        </p>
+
+        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:20px;border:1px solid #2a2a2a;border-radius:6px;overflow:hidden;">
+          <tr style="background:#111;">
+            <td colspan="2" style="padding:10px 12px;color:#c8a84b;font-size:12px;text-transform:uppercase;letter-spacing:1px;">Доставка</td>
+          </tr>
+          <tr><td style="padding:8px 12px;color:#999;font-size:13px;width:42%;">Город</td><td style="padding:8px 12px;font-size:13px;">${data.city}</td></tr>
+          <tr style="background:#111;"><td style="padding:8px 12px;color:#999;font-size:13px;">Адрес</td><td style="padding:8px 12px;font-size:13px;">${data.address}</td></tr>
+          <tr><td style="padding:8px 12px;color:#999;font-size:13px;">Транспортная компания</td><td style="padding:8px 12px;font-size:13px;">${data.transportCompany}</td></tr>
+        </table>
+
+        <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #2a2a2a;border-radius:6px;overflow:hidden;">
+          <tr style="background:#111;">
+            <th style="padding:10px 12px;color:#c8a84b;font-size:12px;text-transform:uppercase;letter-spacing:1px;text-align:left;">Товар</th>
+            <th style="padding:10px 12px;color:#c8a84b;font-size:12px;text-align:center;">Кол-во</th>
+            <th style="padding:10px 12px;color:#c8a84b;font-size:12px;text-align:right;">Сумма</th>
+          </tr>
+          ${customerItemsHtml}
+          <tr style="background:#111;">
+            <td colspan="2" style="padding:12px;font-weight:bold;font-size:15px;color:#fff;">Итого:</td>
+            <td style="padding:12px;font-weight:bold;font-size:15px;color:#c8a84b;text-align:right;">${(data.total ?? 0).toLocaleString("ru-RU")} ₽</td>
+          </tr>
+        </table>
+
+        <p style="margin:24px 0 0;color:#999;font-size:13px;line-height:1.6;">
+          Если у вас возникнут вопросы — пишите на 
+          <a href="mailto:${user}" style="color:#c8a84b;">${user}</a> 
+          или звоните: <a href="tel:89150016878" style="color:#c8a84b;">8 (915) 001-68-78</a>.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:16px 32px;border-top:1px solid #2a2a2a;text-align:center;color:#555;font-size:12px;">
+        БУЛАТ — подковы и гвозди для профессионалов · ${user}
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+
+    const customerText = `Здравствуйте, ${data.name}!\n\nВаш заказ #${orderId} успешно принят.\nНаш менеджер свяжется с вами в ближайшее время.\n\nДоставка: ${data.city}, ${data.address}, ТК: ${data.transportCompany}\n\nСостав заказа:\n${(data.items ?? []).map((i: any) => `  • ${i.name} × ${i.qty} = ${(i.price * i.qty).toLocaleString("ru-RU")} ₽`).join("\n")}\n\nИтого: ${(data.total ?? 0).toLocaleString("ru-RU")} ₽\n\nС уважением, команда БУЛАТ\n${user}`;
+
+    await transport.sendMail({
+      from: `"БУЛАТ" <${user}>`,
+      to: data.email,
+      subject: `Ваш заказ БУЛАТ #${orderId} принят`,
+      text: customerText,
+      html: customerHtml,
+    });
+  }
 }
 
 router.post("/order", async (req, res): Promise<void> => {
