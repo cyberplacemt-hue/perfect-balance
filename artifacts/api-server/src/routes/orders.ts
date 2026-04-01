@@ -13,11 +13,13 @@ function createTransport() {
 
   if (!user || !pass) return null;
 
+  const cleanPass = pass.replace(/\s/g, "");
+
   return nodemailer.createTransport({
     host,
     port,
     secure: true,
-    auth: { user, pass },
+    auth: { user, pass: cleanPass },
   });
 }
 
