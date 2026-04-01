@@ -358,10 +358,7 @@ export function Reviews() {
 
         {/* Write review banner */}
         <div className="bg-[#1a1a1a] rounded-2xl px-8 py-10 text-center">
-          <h3 className="font-display text-white text-2xl mb-2">Уже работаете с БУЛАТ?</h3>
-          <p className="text-white/60 text-sm mb-6">
-            Оставьте отзыв и получите скидку 5% на следующий заказ
-          </p>
+          <h3 className="font-display text-white text-2xl mb-6">Уже работаете с БУЛАТ?</h3>
           <a
             href="#contact"
             onClick={(e) => {
