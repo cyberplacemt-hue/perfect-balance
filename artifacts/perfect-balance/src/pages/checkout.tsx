@@ -252,6 +252,15 @@ export default function Checkout() {
                   </div>
                 </div>
 
+                {createOrderMutation.isError && (
+                  <div className="bg-destructive/10 border border-destructive/30 rounded-sm px-5 py-4 text-sm text-destructive">
+                    Произошла ошибка при отправке заказа. Попробуйте ещё раз или свяжитесь по email:{" "}
+                    <a href="mailto:podkovamsk@mail.ru" className="underline font-semibold">
+                      podkovamsk@mail.ru
+                    </a>
+                  </div>
+                )}
+
                 <div className="mt-10 flex justify-between items-center">
                   <button 
                     type="button" 

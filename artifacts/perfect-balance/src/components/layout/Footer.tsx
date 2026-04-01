@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Phone } from "lucide-react";
+import { Phone, Mail } from "lucide-react";
 
 export function Footer() {
   return (
@@ -85,6 +85,12 @@ export function Footer() {
                   8 (915) 001-68-78
                 </a>
               </li>
+              <li>
+                <a href="mailto:podkovamsk@mail.ru" className="flex items-center gap-2 text-primary hover:text-white transition-colors font-semibold">
+                  <Mail className="w-4 h-4" />
+                  podkovamsk@mail.ru
+                </a>
+              </li>
               <li className="leading-relaxed">
                 <p>г. Мытищи, Московская обл.</p>
               </li>
@@ -92,6 +98,16 @@ export function Footer() {
                 <p>Пн–Пт: 09:00 – 18:00</p>
               </li>
             </ul>
+            <div className="mt-6 border-t border-white/10 pt-6">
+              <p className="text-white/50 text-xs leading-relaxed">
+                Мы всегда на связи: обсуждаем, советуем, считаем.<br />
+                Пишите на{" "}
+                <a href="mailto:podkovamsk@mail.ru" className="text-primary hover:text-white transition-colors font-semibold underline underline-offset-2">
+                  podkovamsk@mail.ru
+                </a>{" "}
+                — это самый быстрый способ достучаться до нас.
+              </p>
+            </div>
           </div>
         </div>
 
