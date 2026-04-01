@@ -10,7 +10,7 @@ const chapters = [
     title: "Рождённые в кузнице",
     quote: "Один кузнец. Одна мечта. Одна наковальня.",
     body: "Всё началось в небольшой кузнице под Рязанью в 1995 году. Михаил Булатов — потомственный кузнец в третьем поколении — вернулся из армии и встал к наковальне своего деда. Вокруг царили девяностые: хаос, безденежье, распад колхозных конюшен. Но лошади никуда не делись. И им по-прежнему были нужны подковы. Михаил заметил простую вещь: качественных подков в России почти не было. Импорт стоил как крыло самолёта, а отечественное гнулось после первой же скачки. Он решил: буду делать сам. Так родился БУЛАТ.",
-    image: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=1400&q=85",
+    image: null as string | null,
     imageLeft: true,
   },
   {
@@ -74,17 +74,21 @@ function Chapter({ chapter }: { chapter: typeof chapters[0] }) {
       }`}
     >
       {/* Image side */}
-      <div className="relative w-full md:w-[55%] h-[50vh] md:h-auto overflow-hidden">
-        <motion.img
-          src={chapter.image}
-          alt={chapter.title}
-          loading="lazy"
-          className="w-full h-full object-cover"
-          initial={{ scale: 1.08 }}
-          animate={isInView ? { scale: 1 } : { scale: 1.08 }}
-          transition={{ duration: 1.4, ease: "easeOut" }}
-        />
-        <div className="absolute inset-0 bg-black/45" />
+      <div className="relative w-full md:w-[55%] h-[50vh] md:h-auto overflow-hidden bg-black">
+        {chapter.image && (
+          <>
+            <motion.img
+              src={chapter.image}
+              alt={chapter.title}
+              loading="lazy"
+              className="w-full h-full object-cover"
+              initial={{ scale: 1.08 }}
+              animate={isInView ? { scale: 1 } : { scale: 1.08 }}
+              transition={{ duration: 1.4, ease: "easeOut" }}
+            />
+            <div className="absolute inset-0 bg-black/45" />
+          </>
+        )}
         <motion.div
           className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
           initial={{ opacity: 0 }}
@@ -93,7 +97,7 @@ function Chapter({ chapter }: { chapter: typeof chapters[0] }) {
         >
           <span
             className="text-white font-display font-bold leading-none"
-            style={{ fontSize: "clamp(80px, 15vw, 200px)", opacity: 0.12 }}
+            style={{ fontSize: "clamp(80px, 15vw, 200px)", opacity: chapter.image ? 0.12 : 0.08 }}
           >
             {chapter.year}
           </span>
